@@ -17,15 +17,19 @@ const messages = [
 function moveNo() {
   count++;
 
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 60);
-
-  noBtn.style.position = "fixed";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
-
-  question.innerText = "Don’t break my heart 😭";
+  // ✅ show message FIRST
   message.innerText = messages[count % messages.length];
+  question.innerText = "Don’t break my heart 😭";
+
+  // small delay so text renders before movement
+  setTimeout(() => {
+    const x = Math.random() * (window.innerWidth - 120);
+    const y = Math.random() * (window.innerHeight - 60);
+
+    noBtn.style.position = "fixed";
+    noBtn.style.left = x + "px";
+    noBtn.style.top = y + "px";
+  }, 10);
 }
 
 // desktop
