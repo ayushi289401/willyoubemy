@@ -2,19 +2,20 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Will You Be My Valentine 💖</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
+  <title>Valentine 💖</title>
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
-  <div id="floating-hearts"></div> 
+
   <div class="card">
     <h1 id="question">Will you be my Valentine? 💕</h1>
+    <p id="no-message"></p>
 
     <div class="btns">
       <button id="yes">Yes 💖</button>
-      <button id="no" onclick="moveNo()"> No 💔</button>
+      <!-- hover trigger -->
+      <button id="no" onmouseover="moveNo()">No 💔</button>
     </div>
   </div>
 
