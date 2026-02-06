@@ -4,7 +4,7 @@ const text = document.getElementById("text");
 const container = document.querySelector(".container");
 const heartsContainer = document.querySelector(".hearts");
 
-/* ---------- NO BUTTON RUNS AWAY (DESKTOP + MOBILE) ---------- */
+/* ---------- NO BUTTON RUNS AWAY ---------- */
 
 function moveNo() {
   const padding = 20;
@@ -17,7 +17,7 @@ function moveNo() {
   const x = Math.random() * maxX;
   const y = Math.random() * maxY;
 
-  noBtn.style.position = "fixed";   // 🔥 IMPORTANT
+  noBtn.style.position = "fixed";
   noBtn.style.left = ${x}px;
   noBtn.style.top = ${y}px;
 
@@ -40,9 +40,10 @@ yesBtn.addEventListener("click", () => {
   container.innerHTML = `
     <h1>Ayushi ❤️ Tanmay</h1>
     <p style="font-size:1.1rem; line-height:1.6; color:#444;">
-      From being my boyfriend for 10 beautiful years to becoming my husband,<br><br>
-      you are my safest place, my forever Valentine,<br>
-      and the love I’ll choose in every lifetime 💍💖
+      From being my boyfriend for 10 beautiful years<br>
+      to becoming my husband 💍<br><br>
+      You are my safest place, my forever Valentine,<br>
+      and the love I’ll choose in every lifetime 💖
     </p>
   `;
 });
@@ -53,16 +54,14 @@ yesBtn.addEventListener("click", () => {
 function createHeart() {
   const heart = document.createElement("span");
   heart.innerText = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
   heart.style.position = "fixed";
+  heart.style.left = Math.random() * 100 + "vw";
   heart.style.bottom = "-20px";
   heart.style.fontSize = "18px";
-  heart.style.animation = floatUp ${4 + Math.random() * 4}s linear;
+  heart.style.animation = "floatUp 6s linear";
   heartsContainer.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 8000);
+  setTimeout(() => heart.remove(), 6000);
 }
 
 setInterval(createHeart, 300);
