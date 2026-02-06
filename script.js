@@ -1,52 +1,47 @@
 const noBtn = document.getElementById("no");
-const text = document.getElementById("text");
 const yesBtn = document.getElementById("yes");
+const text = document.getElementById("text");
+const container = document.querySelector(".container");
+const heartsContainer = document.querySelector(".hearts");
 
-const messages = [
-  "Don’t break my heart 😭",
-  "Pleaseee 🥺",
-  "Think again 💔",
-  "My heart is crying 😢",
-  "You know you love me ❤️"
-];
+// NO button runs away
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("click", moveNo);
 
-let msgIndex = 0;
+function moveNo() {
+  const x = Math.random() * (window.innerWidth - 100);
+  const y = Math.random() * (window.innerHeight - 100);
 
-noBtn.addEventListener("mouseenter", moveButton);
-noBtn.addEventListener("click", moveButton);
-
-function moveButton() {
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 50);
   noBtn.style.position = "absolute";
   noBtn.style.left = ${x}px;
   noBtn.style.top = ${y}px;
 
-  text.innerText = messages[msgIndex % messages.length];
-  msgIndex++;
+  text.innerText = "Don’t break my heart 😭";
 }
 
-// YES CLICK
+// YES button clicked
 yesBtn.addEventListener("click", () => {
-  document.body.innerHTML = `
-    <div style="
-      height:100vh;
-      display:flex;
-      justify-content:center;
-      align-items:center;
-      text-align:center;
-      background:linear-gradient(#ffdee9,#b5fffc);
-      font-family:Arial;
-    ">
-      <div>
-        <h1>Ayushi ❤️ Tanmay</h1>
-        <p style="font-size:18px; max-width:500px;">
-          From being my boyfriend for 10 beautiful years  
-          to becoming my husband,  
-          you are my safest place, my forever Valentine,  
-          and the love I’ll choose every lifetime 💍💖
-        </p>
-      </div>
-    </div>
+  container.innerHTML = `
+    <h1>Ayushi ❤️ Tanmay</h1>
+    <p>
+      From being my boyfriend for 10 beautiful years to becoming my husband,
+      you are my safest place, my forever Valentine,
+      and the love I’ll choose in every lifetime 💍💖
+    </p>
   `;
 });
+
+// Floating hearts animation
+function createHeart() {
+  const heart = document.createElement("span");
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = 4 + Math.random() * 4 + "s";
+  heartsContainer.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 8000);
+}
+
+setInterval(createHeart, 300);
