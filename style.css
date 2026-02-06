@@ -1,12 +1,82 @@
-.hearts::before {
-  content: "💖 💕 💘 💓 💗";
-  position: fixed;
-  animation: float 5s linear infinite;
-  font-size: 30px;
-  top: 100%;
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(to bottom, #ffe6eb, #fff1f4);
+  font-family: Arial, sans-serif;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
 }
 
-@keyframes float {
-  from { top: 100%; }
-  to { top: -10%; }
+h1 {
+  color: #e11d48;
+  margin-bottom: 10px;
+}
+
+#text {
+  color: #555;
+  margin-bottom: 20px;
+  font-size: 18px;
+}
+
+.buttons {
+  display: flex;
+  gap: 20px;
+}
+
+button {
+  border: none;
+  padding: 12px 24px;
+  font-size: 16px;
+  border-radius: 25px;
+  cursor: pointer;
+}
+
+#yes {
+  background-color: #e11d48;
+  color: white;
+}
+
+#no {
+  background-color: #9ca3af;
+  color: white;
+}
+
+/* Floating hearts */
+.heart {
+  position: fixed;
+  bottom: -20px;
+  font-size: 24px;
+  animation: floatUp 6s linear infinite;
+}
+
+@keyframes floatUp {
+  from {
+    transform: translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateY(-110vh);
+    opacity: 0;
+  }
+}
+
+/* Final screen */
+.final {
+  height: 100vh;
+  width: 100%;
+  background: linear-gradient(#ffdee9, #b5fffc);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.final p {
+  font-size: 18px;
+  max-width: 500px;
 }
