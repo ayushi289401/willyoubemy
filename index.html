@@ -98,7 +98,7 @@ let musicPlayed = false;
 
 function playMusic() {
   if (!musicPlayed) {
-    document.getElementById("music").play();
+    document.getElementById("music").play().catch(() => {});
     musicPlayed = true;
   }
 }
@@ -107,44 +107,50 @@ function moveNo() {
   playMusic();
 
   const noBtn = document.getElementById("no");
-  const x = Math.random() * 300 - 150;
-  const y = Math.random() * 300 - 150;
-  noBtn.style.transform = translate(${x}px, ${y}px);
 
+  const maxX = window.innerWidth / 2 - 100;
+  const maxY = window.innerHeight / 2 - 100;
+
+  const x = Math.random() * maxX * (Math.random() > 0.5 ? 1 : -1);
+  const y = Math.random() * maxY * (Math.random() > 0.5 ? 1 : -1);
+
+  noBtn.style.transform = translate(${x}px, ${y}px);
   document.getElementById("message").innerText = "Don’t break my heart 😭";
 }
 
 function yesClick() {
   playMusic();
-
   document.body.innerHTML = `
     <h1 style="color:#ff4d6d;">Ayushi ❤️ Tanmay</h1>
     <p style="font-size:1.3rem; max-width:600px; color:#555; margin-top:20px;">
       From being best friends, to lovers, to standing by each other for 10 beautiful years…<br><br>
       You were my boyfriend, my safe place, my constant — and today, you are my husband 💍❤️<br><br>
-      Every laugh, every fight, every dream we shared led us here.  
-      Choosing you then, choosing you now, and choosing you forever.  
-      Thank you for loving me the way you do.<br><br>
+      Every laugh, every fight, every dream we shared led us here.<br>
+      Choosing you then, choosing you now, and choosing you forever.<br><br>
       Happy Valentine’s Day, my forever 💖
     </p>
   `;
 }
 
-// Create floating hearts
+// Floating hearts
 function createHeart() {
   const heart = document.createElement("div");
-  heart.classList.add("heart");
+  heart.className = "heart";
   heart.innerText = "💖";
   heart.style.left = Math.random() * 100 + "vw";
   heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
   document.body.appendChild(heart);
 
-  setTimeout(() => {
-    heart.remove();
-  }, 7000);
+  setTimeout(() => heart.remove(), 7000);
 }
 
 setInterval(createHeart, 500);
+
+// FORCE movement on every interaction
+const noBtn = document.getElementById("no");
+noBtn.addEventListener("mouseenter", moveNo);
+noBtn.addEventListener("click", moveNo);
+noBtn.addEventListener("touchstart", moveNo);
 </script>
 
 </body>
