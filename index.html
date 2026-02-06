@@ -1,158 +1,87 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Be My Valentine 💖</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Will You Be My Valentine 💖</title>
 
-<style>
-body {
-  margin: 0;
-  height: 100vh;
-  background: linear-gradient(135deg, #ffe6eb, #fff0f5);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Arial', sans-serif;
-  overflow: hidden;
-  text-align: center;
-}
-
-h1 {
-  color: #d6336c;
-  font-size: 2.6rem;
-  z-index: 2;
-}
-
-#message {
-  font-size: 1.2rem;
-  color: #6c757d;
-  margin-top: 10px;
-  z-index: 2;
-}
-
-.buttons {
-  margin-top: 30px;
-  position: relative;
-  z-index: 2;
-}
-
-button {
-  padding: 14px 32px;
-  font-size: 1.2rem;
-  border: none;
-  border-radius: 30px;
-  cursor: pointer;
-}
-
-#yes {
-  background: #ff4d6d;
-  color: white;
-}
-
-#no {
-  background: #adb5bd;
-  color: white;
-  position: absolute;
-}
-
-/* Floating hearts */
-.heart {
-  position: absolute;
-  bottom: -20px;
-  font-size: 20px;
-  animation: floatUp 6s linear infinite;
-  opacity: 0.7;
-}
-
-@keyframes floatUp {
-  0% {
-    transform: translateY(0) scale(1);
-    opacity: 0.8;
-  }
-  100% {
-    transform: translateY(-100vh) scale(1.5);
-    opacity: 0;
-  }
-}
-</style>
+  <!-- LINKING CSS FILE -->
+  <link rel="stylesheet" href="style.css" />
 </head>
 
 <body>
 
-<h1 id="title">Will you be my Valentine? 💖</h1>
-<div id="message">Don’t break my heart 😭</div>
+  <h1>Will you be my Valentine? 💖</h1>
+  <div id="text">Don’t break my heart 😭</div>
 
-<div class="buttons">
-  <button id="yes" onclick="yesClick()">Yes 💘</button>
-  <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 💔</button>
-</div>
+  <div class="buttons">
+    <button id="yes">Yes 💘</button>
+    <button id="no">No 💔</button>
+  </div>
 
-<!-- Background Music -->
-<audio id="music" loop>
-  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
-</audio>
+  <!-- Background music -->
+  <audio id="music" loop>
+    <source src="https://cdn.pixabay.com/audio/2022/03/15/audio_7c34d39c27.mp3" type="audio/mpeg">
+  </audio>
 
-<script>
-let musicPlayed = false;
+  <script>
+    const noBtn = document.getElementById("no");
+    const yesBtn = document.getElementById("yes");
+    const text = document.getElementById("text");
+    const music = document.getElementById("music");
 
-function playMusic() {
-  if (!musicPlayed) {
-    document.getElementById("music").play().catch(() => {});
-    musicPlayed = true;
-  }
-}
+    const messages = [
+      "Don’t break my heart 😭",
+      "Pleaseee 🥺",
+      "Think again 💔",
+      "My heart is crying 😢",
+      "You know you love me ❤️"
+    ];
 
-function moveNo() {
-  playMusic();
+    let index = 0;
 
-  const noBtn = document.getElementById("no");
+    function moveNo() {
+      const x = Math.random() * (window.innerWidth - 120);
+      const y = Math.random() * (window.innerHeight - 60);
 
-  const maxX = window.innerWidth / 2 - 100;
-  const maxY = window.innerHeight / 2 - 100;
+      noBtn.style.position = "absolute";
+      noBtn.style.left = x + "px";
+      noBtn.style.top = y + "px";
 
-  const x = Math.random() * maxX * (Math.random() > 0.5 ? 1 : -1);
-  const y = Math.random() * maxY * (Math.random() > 0.5 ? 1 : -1);
+      text.innerText = messages[index % messages.length];
+      index++;
+    }
 
-  noBtn.style.transform = translate(${x}px, ${y}px);
-  document.getElementById("message").innerText = "Don’t break my heart 😭";
-}
+    noBtn.addEventListener("mouseenter", moveNo);
+    noBtn.addEventListener("click", moveNo);
 
-function yesClick() {
-  playMusic();
-  document.body.innerHTML = `
-    <h1 style="color:#ff4d6d;">Ayushi ❤️ Tanmay</h1>
-    <p style="font-size:1.3rem; max-width:600px; color:#555; margin-top:20px;">
-      From being best friends, to lovers, to standing by each other for 10 beautiful years…<br><br>
-      You were my boyfriend, my safe place, my constant — and today, you are my husband 💍❤️<br><br>
-      Every laugh, every fight, every dream we shared led us here.<br>
-      Choosing you then, choosing you now, and choosing you forever.<br><br>
-      Happy Valentine’s Day, my forever 💖
-    </p>
-  `;
-}
+    yesBtn.addEventListener("click", () => {
+      music.play();
 
-// Floating hearts
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "💖";
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
-  document.body.appendChild(heart);
+      document.body.innerHTML = `
+        <div class="final">
+          <h1>Ayushi ❤️ Tanmay</h1>
+          <p>
+            From being my boyfriend for 10 beautiful years  
+            to becoming my husband,  
+            you are my safest place, my forever Valentine,  
+            and the love I’ll choose in every lifetime 💍💖
+          </p>
+        </div>
+      `;
+    });
 
-  setTimeout(() => heart.remove(), 7000);
-}
+    // Floating hearts
+    setInterval(() => {
+      const heart = document.createElement("div");
+      heart.className = "heart";
+      heart.innerText = "💖";
+      heart.style.left = Math.random() * 100 + "vw";
+      document.body.appendChild(heart);
 
-setInterval(createHeart, 500);
+      setTimeout(() => heart.remove(), 6000);
+    }, 500);
+  </script>
 
-// FORCE movement on every interaction
-const noBtn = document.getElementById("no");
-noBtn.addEventListener("mouseenter", moveNo);
-noBtn.addEventListener("click", moveNo);
-noBtn.addEventListener("touchstart", moveNo);
-</script>
-<script src="script.js"></script>
-<div class="hearts"></div>
 </body>
 </html>
