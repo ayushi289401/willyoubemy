@@ -119,3 +119,14 @@ button {
   margin-top: 10px;
   z-index: 0;
 }
+
+#no-message {
+  position: relative;
+  z-index: 5;          /* 👈 higher than buttons */
+  margin-bottom: 15px;
+}
+
+.btns {
+  position: relative;
+  z-index: 1;
+}
