@@ -28,15 +28,13 @@ document.querySelector(".card").appendChild(msg);
 function moveNo() {
   noCount++;
 
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 60);
+  const x = Math.random() * 200 - 100; // move left/right
+  const y = Math.random() * 150 - 75;  // move up/down
 
-  noBtn.style.position = "fixed";
-  noBtn.style.left = x + "px";
-  noBtn.style.top = y + "px";
+  noBtn.style.transform = translate(${x}px, ${y}px);
 
   question.innerText = "Don’t break my heart 😭";
-  msg.innerText = noMessages[noCount % noMessages.length];
+  noMessage.innerText = noMessages[noCount % noMessages.length];
 }
 
 // Desktop + Mobile
