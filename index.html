@@ -2,70 +2,149 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Be My Valentine?</title>
+<title>Be My Valentine 💖</title>
+
 <style>
-  body {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: 100vh;
-    background: #ffe6eb;
-    font-family: 'Arial', sans-serif;
-    text-align: center;
-  }
+body {
+  margin: 0;
+  height: 100vh;
+  background: linear-gradient(135deg, #ffe6eb, #fff0f5);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Arial', sans-serif;
+  overflow: hidden;
+  text-align: center;
+}
 
-  h1 {
-    font-size: 2.5rem;
-    color: #d6336c;
-  }
+h1 {
+  color: #d6336c;
+  font-size: 2.6rem;
+  z-index: 2;
+}
 
-  .buttons {
-    margin-top: 30px;
-    position: relative;
-  }
+#message {
+  font-size: 1.2rem;
+  color: #6c757d;
+  margin-top: 10px;
+  z-index: 2;
+}
 
-  button {
-    padding: 15px 30px;
-    font-size: 1.2rem;
-    border: none;
-    border-radius: 30px;
-    cursor: pointer;
-  }
+.buttons {
+  margin-top: 30px;
+  position: relative;
+  z-index: 2;
+}
 
-  #yes {
-    background: #ff4d6d;
-    color: white;
-    margin-right: 20px;
-  }
+button {
+  padding: 14px 32px;
+  font-size: 1.2rem;
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+}
 
-  #no {
-    background: #adb5bd;
-    color: white;
-    position: absolute;
+#yes {
+  background: #ff4d6d;
+  color: white;
+}
+
+#no {
+  background: #adb5bd;
+  color: white;
+  position: absolute;
+}
+
+/* Floating hearts */
+.heart {
+  position: absolute;
+  bottom: -20px;
+  font-size: 20px;
+  animation: floatUp 6s linear infinite;
+  opacity: 0.7;
+}
+
+@keyframes floatUp {
+  0% {
+    transform: translateY(0) scale(1);
+    opacity: 0.8;
   }
+  100% {
+    transform: translateY(-100vh) scale(1.5);
+    opacity: 0;
+  }
+}
 </style>
 </head>
+
 <body>
 
-<h1>Will you be my Valentine? 💖</h1>
+<h1 id="title">Will you be my Valentine? 💖</h1>
+<div id="message">Don’t break my heart 😭</div>
 
 <div class="buttons">
   <button id="yes" onclick="yesClick()">Yes 💘</button>
-  <button id="no" onmouseover="moveNo()">No 😢</button>
+  <button id="no" onmouseover="moveNo()" ontouchstart="moveNo()">No 💔</button>
 </div>
 
-<script>
-  function moveNo() {
-    const noBtn = document.getElementById("no");
-    const x = Math.random() * 300 - 150;
-    const y = Math.random() * 300 - 150;
-    noBtn.style.transform = translate(${x}px, ${y}px);
-  }
+<!-- Background Music -->
+<audio id="music" loop>
+  <source src="https://www.soundhelix.com/examples/mp3/SoundHelix-Song-1.mp3" type="audio/mpeg">
+</audio>
 
-  function yesClick() {
-    document.body.innerHTML = "<h1>Yayyy! 💕 I knew it 😍</h1>";
+<script>
+let musicPlayed = false;
+
+function playMusic() {
+  if (!musicPlayed) {
+    document.getElementById("music").play();
+    musicPlayed = true;
   }
+}
+
+function moveNo() {
+  playMusic();
+
+  const noBtn = document.getElementById("no");
+  const x = Math.random() * 300 - 150;
+  const y = Math.random() * 300 - 150;
+  noBtn.style.transform = translate(${x}px, ${y}px);
+
+  document.getElementById("message").innerText = "Don’t break my heart 😭";
+}
+
+function yesClick() {
+  playMusic();
+
+  document.body.innerHTML = `
+    <h1 style="color:#ff4d6d;">Ayushi ❤️ Tanmay</h1>
+    <p style="font-size:1.3rem; max-width:600px; color:#555; margin-top:20px;">
+      From being best friends, to lovers, to standing by each other for 10 beautiful years…<br><br>
+      You were my boyfriend, my safe place, my constant — and today, you are my husband 💍❤️<br><br>
+      Every laugh, every fight, every dream we shared led us here.  
+      Choosing you then, choosing you now, and choosing you forever.  
+      Thank you for loving me the way you do.<br><br>
+      Happy Valentine’s Day, my forever 💖
+    </p>
+  `;
+}
+
+// Create floating hearts
+function createHeart() {
+  const heart = document.createElement("div");
+  heart.classList.add("heart");
+  heart.innerText = "💖";
+  heart.style.left = Math.random() * 100 + "vw";
+  heart.style.animationDuration = (Math.random() * 3 + 4) + "s";
+  document.body.appendChild(heart);
+
+  setTimeout(() => {
+    heart.remove();
+  }, 7000);
+}
+
+setInterval(createHeart, 500);
 </script>
 
 </body>
