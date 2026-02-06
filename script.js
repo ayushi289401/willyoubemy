@@ -10,32 +10,33 @@ const messages = [
   "Ouch 💔",
   "Don’t do this 😭",
   "My heart can’t take it",
-  "You’re too cruel 😭",
+  "You’re breaking my heart 😢",
   "Okay okay 😘"
 ];
 
-// IMPORTANT: must be global for inline onclick
+// MUST be global for inline hover
 function moveNo() {
   count++;
 
-  // update text
+  // show message FIRST
   message.textContent = messages[count % messages.length];
   question.textContent = "Don’t break my heart 😭";
 
-  // move NO button
+  // calculate safe random position
   const maxX = window.innerWidth - noBtn.offsetWidth - 20;
   const maxY = window.innerHeight - noBtn.offsetHeight - 20;
 
   const x = Math.random() * maxX;
   const y = Math.random() * maxY;
 
+  // move button
   noBtn.style.position = "fixed";
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
 }
 
-// YES button
-yesBtn.onclick = function () {
+// YES click
+yesBtn.onclick = () => {
   document.querySelector(".card").innerHTML = `
     <h1>Ayushi ❤️ Tanmay</h1>
     <p>
@@ -43,7 +44,7 @@ yesBtn.onclick = function () {
       to becoming my husband 💍<br><br>
       You are my forever Valentine,<br>
       my safest place,<br>
-      and the love I will choose in every lifetime 💖
+      and the love I’ll choose in every lifetime 💖
     </p>
   `;
 };
