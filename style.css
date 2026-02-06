@@ -86,3 +86,8 @@ button {
   position: relative;
   z-index: 5;
 }
+
+#no-message {
+  display: block;
+  margin: 10px 0 15px 0;
+}
