@@ -1,45 +1,38 @@
 const noBtn = document.getElementById("no");
 const yesBtn = document.getElementById("yes");
+const message = document.getElementById("no-message");
 const question = document.getElementById("question");
 
-let noCount = 0;
+let count = 0;
 
-const noMessages = [
-  "Heyyy 😭 why No?",
-  "Ouch 💔 that hurt!",
+const messages = [
   "Pleaseee 🥺",
-  "Don’t do this to me 😭",
-  "My heart can’t take this 💔",
-  "Okay now you’re teasing 😤",
-  "You can’t escape love 😘"
+  "Ouch 💔",
+  "Don’t do this 😭",
+  "My heart can’t take it",
+  "Okay you’re teasing 😤",
+  "You can’t say no 😘"
 ];
 
-// Create message element once
-const msg = document.createElement("div");
-msg.style.position = "absolute";
-msg.style.top = "70%";
-msg.style.left = "50%";
-msg.style.transform = "translateX(-50%)";
-msg.style.color = "#ff4d88";
-msg.style.fontSize = "16px";
-msg.style.marginTop = "10px";
-document.querySelector(".card").appendChild(msg);
-
 function moveNo() {
-  noCount++;
+  count++;
 
-  const x = Math.random() * 200 - 100; // move left/right
-  const y = Math.random() * 150 - 75;  // move up/down
+  const x = Math.random() * (window.innerWidth - 120);
+  const y = Math.random() * (window.innerHeight - 60);
 
-  noBtn.style.transform = translate(${x}px, ${y}px);
+  noBtn.style.position = "fixed";
+  noBtn.style.left = x + "px";
+  noBtn.style.top = y + "px";
 
   question.innerText = "Don’t break my heart 😭";
-  noMessage.innerText = noMessages[noCount % noMessages.length];
+  message.innerText = messages[count % messages.length];
 }
 
-// Desktop + Mobile
+// desktop
 noBtn.addEventListener("mouseenter", moveNo);
 noBtn.addEventListener("click", moveNo);
+
+// mobile
 noBtn.addEventListener("touchstart", moveNo);
 
 yesBtn.addEventListener("click", () => {
@@ -54,24 +47,3 @@ yesBtn.addEventListener("click", () => {
     </p>
   `;
 });
-
-const heartContainer = document.getElementById("floating-hearts");
-
-function createHeart() {
-  const heart = document.createElement("div");
-  heart.className = "heart";
-  heart.innerText = "💖";
-
-  heart.style.left = Math.random() * 100 + "vw";
-  heart.style.fontSize = 14 + Math.random() * 12 + "px";
-  heart.style.animationDuration = 6 + Math.random() * 4 + "s";
-
-  heartContainer.appendChild(heart);
-
-  setTimeout(() => {
-    heart.remove();
-  }, 10000);
-}
-
-// Create hearts gently
-setInterval(createHeart, 800);
