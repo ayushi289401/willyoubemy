@@ -89,5 +89,6 @@ button {
 
 #no-message {
   display: block;
-  margin: 10px 0 15px 0;
+  min-height: 24px;     /* reserves space */
+  margin-bottom: 20px; /* pushes buttons down */
 }
