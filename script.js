@@ -14,7 +14,8 @@ const messages = [
   "You can’t say no 😘"
 ];
 
-function moveNo() {
+// CLICK ONLY — most reliable
+noBtn.onclick = function () {
   count++;
 
   // show message
@@ -28,16 +29,9 @@ function moveNo() {
   noBtn.style.position = "fixed";
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
-}
+};
 
-// IMPORTANT: use mouseover
-noBtn.addEventListener("mouseover", moveNo);
-noBtn.addEventListener("click", moveNo);
-noBtn.addEventListener("touchstart", moveNo);
-// mobile
-noBtn.addEventListener("touchstart", moveNo);
-
-yesBtn.addEventListener("click", () => {
+yesBtn.onclick = function () {
   document.querySelector(".card").innerHTML = `
     <h1>Ayushi ❤️ Tanmay</h1>
     <p>
@@ -48,4 +42,4 @@ yesBtn.addEventListener("click", () => {
       and the love I’ll choose in every lifetime 💖
     </p>
   `;
-});
+};
