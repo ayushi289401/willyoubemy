@@ -10,36 +10,33 @@ const messages = [
   "Ouch 💔",
   "Don’t do this 😭",
   "My heart can’t take it",
-  "Okay you’re teasing 😤",
-  "You can’t say no 😘"
+  "You’re breaking me 😭",
+  "Okay okay I give up 😘"
 ];
 
-// CLICK ONLY — most reliable
-noBtn.onclick = function () {
+noBtn.addEventListener("click", () => {
   count++;
 
-  // show message
-  message.innerText = messages[count % messages.length];
-  question.innerText = "Don’t break my heart 😭";
+  message.textContent = messages[count % messages.length];
+  question.textContent = "Don’t break my heart 😭";
 
-  // move button
-  const x = Math.random() * (window.innerWidth - 120);
-  const y = Math.random() * (window.innerHeight - 60);
+  const x = Math.random() * (window.innerWidth - 140);
+  const y = Math.random() * (window.innerHeight - 80);
 
   noBtn.style.position = "fixed";
   noBtn.style.left = x + "px";
   noBtn.style.top = y + "px";
-};
+});
 
-yesBtn.onclick = function () {
+yesBtn.addEventListener("click", () => {
   document.querySelector(".card").innerHTML = `
     <h1>Ayushi ❤️ Tanmay</h1>
     <p>
       From being my boyfriend for 10 beautiful years<br>
       to becoming my husband 💍<br><br>
-      You are my safest place,<br>
-      my forever Valentine,<br>
-      and the love I’ll choose in every lifetime 💖
+      You are my forever Valentine,<br>
+      my safest place,<br>
+      and my greatest love 💖
     </p>
   `;
-};
+});
