@@ -1,0 +1,12 @@
+.hearts::before {
+  content: "💖 💕 💘 💓 💗";
+  position: fixed;
+  animation: float 5s linear infinite;
+  font-size: 30px;
+  top: 100%;
+}
+
+@keyframes float {
+  from { top: 100%; }
+  to { top: -10%; }
+}
