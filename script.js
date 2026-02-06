@@ -38,13 +38,11 @@ function moveNo() {
 // YES click
 yesBtn.onclick = () => {
   document.querySelector(".card").innerHTML = `
-    <h1>Ayushi ❤️ Tanmay</h1>
+    <h1>I Love You ❤️</h1>
     <p>
-      From being my boyfriend for 10 beautiful years<br>
-      to becoming my husband 💍<br><br>
-      You are my forever Valentine,<br>
-      my safest place,<br>
-      and the love I’ll choose in every lifetime 💖
+      Congratulation 🎉 For confirming your lifetime subscription to Love 💖 <br>
+      You are my forever Valentine💍<br><br>
+      No refunds, No exchanges. Happy Valentine's Day 💖
     </p>
   `;
 };
